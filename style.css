@@ -1,0 +1,62 @@
+/* 自定义样式 - 仅用于Tailwind无法实现的效果 */
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 卡片悬停动画 */
+.hover\:shadow-xl:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* 渐变动画背景 */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+/* 时间线连接线 */
+section .space-y-6 > div:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 12px;
+    margin: 0 auto;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    header {
+        height: 240px;
+    }
+    
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    header {
+        background: #047857 !important;
+        height: auto;
+        padding: 2rem;
+    }
+    
+    .shadow-md, .shadow-lg {
+        box-shadow: none !important;
+        border: 1px solid #e5e7eb;
+    }
+}
