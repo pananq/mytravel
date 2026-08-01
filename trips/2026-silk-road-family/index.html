@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>2026 河西走廊亲子行程｜实际预订版</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     :root{
       --paper:#fbf7ed;
@@ -251,6 +252,57 @@
         repeating-linear-gradient(90deg,rgba(32,48,46,.03) 0 1px,transparent 1px 34px);
       box-shadow:var(--shadow);
     }
+    .real-map-card{
+      overflow:hidden;
+      border:1px solid rgba(32,48,46,.12);
+      border-radius:8px;
+      background:#fffdf8;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+    #trip-real-map{
+      width:100%;
+      height:clamp(420px,54vw,640px);
+      background:#efe5d2;
+    }
+    .real-map-toolbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(32,48,46,.1);
+      background:rgba(255,253,248,.92);
+    }
+    .real-map-toolbar p{margin:0;color:var(--soft-ink)}
+    .real-map-toolbar a{
+      flex:0 0 auto;
+      border:1px solid rgba(32,48,46,.14);
+      border-radius:8px;
+      padding:8px 11px;
+      color:var(--ink);
+      background:#fff;
+      font-weight:900;
+      font-size:14px;
+    }
+    .map-pin-label{
+      display:grid;
+      place-items:center;
+      width:30px;
+      height:30px;
+      border:2px solid #fffdf8;
+      border-radius:50%;
+      background:var(--rust);
+      color:#fff;
+      box-shadow:0 5px 14px rgba(32,48,46,.28);
+      font-weight:950;
+      font-size:13px;
+    }
+    .map-pin-label.train{background:var(--jade)}
+    .map-pin-label.drive{background:var(--gold);color:#352510}
+    .map-pin-label.transfer{background:var(--sky)}
+    .leaflet-popup-content{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+    .leaflet-control-attribution{font-size:11px}
     .sketch-map svg{display:block;width:100%;height:auto}
     .map-caption{
       display:grid;
@@ -287,6 +339,8 @@
       .hero-grid,.grid-3,.grid-2,.quick-board{grid-template-columns:1fr}
       .map-card{min-height:auto}
       .day-body{grid-template-columns:1fr}
+      .real-map-toolbar{display:block}
+      .real-map-toolbar a{display:inline-flex;margin-top:8px}
       .map-caption{grid-template-columns:1fr}
       .map-legend{justify-content:flex-start}
       .map-note-grid{grid-template-columns:1fr}
@@ -393,9 +447,21 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>手绘路线地图</h2>
-            <p>地图按中国范围内的实际方位做近似摆放，不是等比例导航图。它的重点是帮你快速理解：去程从华南飞到青海，随后沿河西走廊一路向西，返程从敦煌经北京回深圳。</p>
+            <h2>真实底图与手绘路线地图</h2>
+            <p>上方是真实在线地图底图，按城市坐标画出航班、动车和自驾段；下方保留手绘感地图，方便快速讲清整条丝路故事线。</p>
           </div>
+        </div>
+        <div class="real-map-card">
+          <div class="real-map-toolbar">
+            <p>可拖动、缩放查看实际方位。红色虚线是航班，绿色是动车，黄色是自驾，蓝色虚线是返程中转。</p>
+            <a href="https://www.google.com/maps/dir/Shenzhen/Xining/Zhangye/Jiayuguan/Dunhuang/Beijing/Shenzhen" target="_blank" rel="noreferrer">在 Google Maps 打开</a>
+          </div>
+          <div id="trip-real-map" aria-label="真实底图上的河西走廊亲子行路线"></div>
+          <noscript>
+            <div class="map-caption">
+              <p>浏览器未启用 JavaScript，交互地图无法加载。可使用上方 Google Maps 链接查看路线。</p>
+            </div>
+          </noscript>
         </div>
         <div class="sketch-map" aria-label="2026 河西走廊亲子行手绘路线地图">
           <svg viewBox="0 0 1000 620" role="img" aria-labelledby="map-title map-desc">
@@ -844,5 +910,64 @@
   <footer>
     <div class="wrap">更新日期：2026-08-01。公开页面已隐去个人身份信息，仅保留行程执行信息。</div>
   </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    (function(){
+      if (!window.L || !document.getElementById('trip-real-map')) return;
+
+      var places = [
+        { key:'shenzhen', name:'深圳', label:'1', type:'main', coord:[22.5431,114.0579], note:'8/14 06:55 出发；8/20 23:35 返回' },
+        { key:'xining', name:'西宁', label:'2', type:'transfer', coord:[36.6171,101.7782], note:'10:35 抵达曹家堡机场，转西宁站动车' },
+        { key:'zhangye', name:'张掖', label:'3', type:'train', coord:[38.9259,100.4498], note:'2 晚，平山湖大峡谷 + 七彩丹霞' },
+        { key:'jiayuguan', name:'嘉峪关', label:'4', type:'drive', coord:[39.7720,98.2891], note:'关城短停，12:00 取 RAV4' },
+        { key:'dunhuang', name:'敦煌', label:'5', type:'main', coord:[40.1421,94.6619], note:'莫高窟、又见敦煌、西线、鸣沙山' },
+        { key:'beijing', name:'北京', label:'6', type:'transfer', coord:[39.9042,116.4074], note:'8/20 返程中转' }
+      ];
+
+      var byKey = places.reduce(function(acc, place){
+        acc[place.key] = place;
+        return acc;
+      }, {});
+
+      var map = L.map('trip-real-map', {
+        scrollWheelZoom:false,
+        tap:true
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom:18,
+        attribution:'&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      function icon(place){
+        return L.divIcon({
+          className:'',
+          html:'<span class="map-pin-label ' + place.type + '">' + place.label + '</span>',
+          iconSize:[30,30],
+          iconAnchor:[15,15],
+          popupAnchor:[0,-16]
+        });
+      }
+
+      places.forEach(function(place){
+        L.marker(place.coord, { icon:icon(place), title:place.name })
+          .addTo(map)
+          .bindPopup('<strong>' + place.name + '</strong><br>' + place.note);
+      });
+
+      var flightOut = [byKey.shenzhen.coord, byKey.xining.coord];
+      var train = [byKey.xining.coord, byKey.zhangye.coord, byKey.jiayuguan.coord];
+      var drive = [byKey.jiayuguan.coord, byKey.dunhuang.coord];
+      var flightBack = [byKey.dunhuang.coord, byKey.beijing.coord, byKey.shenzhen.coord];
+
+      L.polyline(flightOut, { color:'#a44c35', weight:4, dashArray:'10 9', opacity:.9 }).addTo(map).bindPopup('去程航班：深圳 → 西宁');
+      L.polyline(train, { color:'#2f756b', weight:5, opacity:.9 }).addTo(map).bindPopup('动车：西宁 → 张掖 → 嘉峪关');
+      L.polyline(drive, { color:'#d7a13a', weight:5, opacity:.95 }).addTo(map).bindPopup('自驾：嘉峪关 → 敦煌');
+      L.polyline(flightBack, { color:'#2f7184', weight:4, dashArray:'10 9', opacity:.88 }).addTo(map).bindPopup('返程航班：敦煌 → 北京 → 深圳');
+
+      var bounds = L.latLngBounds(places.map(function(place){ return place.coord; }));
+      map.fitBounds(bounds, { padding:[28,28] });
+    })();
+  </script>
 </body>
 </html>
