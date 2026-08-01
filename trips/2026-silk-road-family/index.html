@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 河西走廊亲子行程｜实际预订版</title>
+  <style>
+    :root {
+      --ink:#24322f; --muted:#66746f; --paper:#fbfaf4; --white:#fff;
+      --line:#d9ded4; --rust:#963f2f; --clay:#bd603c; --gold:#d49a36;
+      --moss:#58775f; --blue:#2e6f84; --soft:#f4ead8;
+      --shadow:0 18px 54px rgba(44,35,22,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--ink);background:
+      radial-gradient(circle at 82% 2%,rgba(212,154,54,.22),transparent 28rem),
+      linear-gradient(180deg,#f8f0e2 0%,var(--paper) 42%,#eef3ee 100%);
+      font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+      line-height:1.68;
+    }
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .shell{width:min(1160px,calc(100% - 32px));margin:0 auto}
+    nav{position:sticky;top:0;z-index:20;background:rgba(251,250,244,.92);border-bottom:1px solid rgba(36,50,47,.12);backdrop-filter:blur(14px)}
+    nav .shell{display:flex;gap:10px;overflow-x:auto;padding:10px 0}
+    nav a{flex:0 0 auto;padding:8px 12px;border:1px solid rgba(36,50,47,.12);border-radius:999px;background:var(--white);color:var(--ink);font-size:14px;font-weight:800}
+    .hero{min-height:88vh;display:grid;align-items:center;position:relative;overflow:hidden;padding:42px 0 28px}
+    .hero:before{
+      content:"";position:absolute;right:-18%;top:12%;width:74vw;height:35vw;min-height:270px;z-index:-1;
+      background:linear-gradient(145deg,rgba(189,96,60,.82),rgba(212,154,54,.42) 46%,rgba(46,111,132,.25)),
+      repeating-linear-gradient(166deg,rgba(255,255,255,.18) 0 2px,transparent 2px 22px);
+      clip-path:polygon(3% 46%,22% 18%,47% 36%,66% 10%,98% 42%,86% 74%,58% 62%,34% 88%,12% 70%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:end}
+    .eyebrow{display:inline-flex;gap:10px;align-items:center;color:var(--rust);font-weight:900;margin-bottom:16px}
+    .dot{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+    h1{font-size:clamp(40px,7vw,82px);line-height:1.04;letter-spacing:0;margin:0 0 18px;max-width:780px}
+    h2{font-size:clamp(28px,4vw,44px);line-height:1.14;letter-spacing:0;margin:0 0 18px}
+    h3{font-size:22px;margin:0 0 10px}
+    p{margin:0 0 12px}
+    .lead{font-size:clamp(18px,2vw,23px);color:#46534f;max-width:750px;margin-bottom:26px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+    .stat,.card,.day,.notice,.table-wrap,.todo,.source-box{
+      background:rgba(255,255,255,.86);border:1px solid rgba(36,50,47,.1);border-radius:8px;box-shadow:0 10px 30px rgba(44,35,22,.07)
+    }
+    .stat{padding:14px}.stat strong{display:block;font-size:22px;line-height:1.2}.stat span{font-size:13px;color:var(--muted)}
+    .panel{padding:22px;background:rgba(255,255,255,.78);border:1px solid rgba(150,63,47,.14);border-radius:8px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+    .panel-title{font-size:18px;font-weight:900;margin-bottom:14px}
+    .route{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;padding-top:14px}
+    .route:before{content:"";position:absolute;left:9%;right:9%;top:25px;height:2px;background:linear-gradient(90deg,var(--clay),var(--gold),var(--moss),var(--blue))}
+    .stop{position:relative;z-index:1;text-align:center}.stop b{display:block;width:22px;height:22px;border-radius:50%;border:3px solid #fff;background:var(--clay);margin:0 auto 10px;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+    .stop:nth-child(2) b{background:var(--gold)}.stop:nth-child(3) b{background:var(--moss)}.stop:nth-child(4) b{background:var(--blue)}.stop:nth-child(5) b{background:var(--rust)}
+    .stop span{display:block;font-size:14px;font-weight:900}.stop small{display:block;color:var(--muted);font-size:12px}
+    section{padding:52px 0}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:22px}.section-head p{max-width:660px;color:var(--muted);margin:0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{padding:20px}
+    .tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#eef4f1;color:#31584f;font-size:13px;font-weight:900;margin-bottom:10px}
+    .tag.hot{background:#f9e6de;color:var(--rust)}.tag.gold{background:#faefd6;color:#7b5816}.tag.blue{background:#e6f1f4;color:#24596a}
+    .anchor-list{display:grid;gap:12px}
+    .anchor{display:grid;grid-template-columns:148px 1fr 122px;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+    .anchor b{color:var(--rust)}.anchor small{color:var(--muted)}.bar{height:10px;border-radius:99px;background:#edf0ea;overflow:hidden}.bar span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--rust),var(--gold))}
+    .days{display:grid;gap:18px}.day{overflow:hidden}.day-head{display:grid;grid-template-columns:132px 1fr auto;gap:16px;align-items:center;padding:18px 20px;background:linear-gradient(90deg,rgba(189,96,60,.1),rgba(88,119,95,.09));border-bottom:1px solid rgba(36,50,47,.08)}
+    .date{font-weight:950;color:var(--rust);line-height:1.2}.date small{display:block;color:var(--muted);font-weight:800}
+    .pill{white-space:nowrap;border-radius:999px;background:var(--moss);color:#fff;padding:6px 10px;font-size:13px;font-weight:900}.pill.mid{background:var(--gold);color:#3a2a16}.pill.high{background:var(--rust)}
+    .timeline{padding:10px 20px 20px}.slot{display:grid;grid-template-columns:104px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid rgba(36,50,47,.09)}.slot:last-child{border-bottom:0}
+    .time{color:var(--blue);font-weight:950}.slot strong{display:block;margin-bottom:3px}.slot p{color:#4f5d59;margin:0}
+    .note-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 20px 20px}.mini{padding:12px;border-radius:8px;background:#f8f5ed;border:1px solid rgba(36,50,47,.08);font-size:14px}.mini b{display:block;color:var(--rust)}
+    .notice{padding:18px 20px;border-left:5px solid var(--gold);margin:18px 0}
+    table{width:100%;border-collapse:collapse}th,td{padding:12px 10px;text-align:left;border-bottom:1px solid rgba(36,50,47,.1);vertical-align:top}th{color:var(--rust);font-size:14px}td:last-child,th:last-child{text-align:right}
+    .todo{padding:18px 20px}.todo ol{margin:8px 0 0;padding-left:22px}.todo li{margin:8px 0}.done{color:var(--moss);font-weight:900}.pending{color:var(--rust);font-weight:900}
+    .source-box{padding:18px 20px}.source-box ol{margin:8px 0 0;padding-left:21px}.source-box li{margin:8px 0;color:#46524f}
+    .print-bar{position:fixed;right:18px;bottom:18px;z-index:30}.print-bar button{border:0;background:var(--rust);color:#fff;border-radius:999px;padding:12px 16px;font-weight:950;box-shadow:var(--shadow);cursor:pointer}
+    @media(max-width:900px){.hero-grid,.grid-3,.grid-2{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.anchor{grid-template-columns:1fr}.day-head{grid-template-columns:1fr}.note-row{grid-template-columns:1fr}.route{grid-template-columns:1fr;padding-left:14px}.route:before{left:24px;right:auto;top:20px;bottom:20px;width:2px;height:auto}.stop{display:grid;grid-template-columns:32px 1fr;text-align:left}.stop b{margin:0}}
+    @media(max-width:620px){.shell{width:min(100% - 22px,1160px)}.hero{min-height:auto}.stats{grid-template-columns:1fr}.slot{grid-template-columns:1fr;gap:4px}td:last-child,th:last-child{text-align:left}.print-bar{display:none}}
+    @media print{body{background:white}nav,.print-bar{display:none}.hero{min-height:auto;padding:20px 0}section{padding:22px 0}.card,.day,.notice,.todo,.table-wrap,.source-box{box-shadow:none;break-inside:avoid}a{color:var(--ink)}}
+  </style>
+</head>
+<body>
+  <nav aria-label="页面导航">
+    <div class="shell">
+      <a href="#overview">总览</a>
+      <a href="#anchors">已订锚点</a>
+      <a href="#records">预订记录</a>
+      <a href="#days">每日行程</a>
+      <a href="#hotels">住宿交通</a>
+      <a href="#booking">预约门票</a>
+      <a href="#packing">行李提示</a>
+      <a href="#todo">待完成</a>
+      <a href="#sources">核实来源</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>实际预订版｜2026 年 8 月 14 日至 8 月 20 日</div>
+          <h1>深圳出发，西宁中转进，敦煌经北京返程的河西走廊亲子行</h1>
+          <p class="lead">本版按截图里的实际预订记录更新：8 月 14 日深航 ZH9235 抵达西宁，张掖自驾 2 晚；8 月 16 日嘉峪关取 RAV4 后转场敦煌；8 月 17 日 10:45 莫高窟、20:00《又见敦煌》；8 月 20 日国航经北京返回深圳。</p>
+          <div class="stats">
+            <div class="stat"><strong>7 天 6 晚</strong><span>张掖 2 晚 + 敦煌 4 晚</span></div>
+            <div class="stat"><strong>4 个已定节点</strong><span>航班 / 酒店 / 租车 / 门票</span></div>
+            <div class="stat"><strong>2 天偏高强度</strong><span>8/15 与 8/19</span></div>
+            <div class="stat"><strong>两段自驾</strong><span>张掖秦 PLUS + 嘉峪关 RAV4</span></div>
+          </div>
+        </div>
+        <aside class="panel">
+          <div class="panel-title">路线示意</div>
+          <div class="route">
+            <div class="stop"><b></b><span>深圳</span><small>已订去程</small></div>
+            <div class="stop"><b></b><span>西宁</span><small>机场转高铁</small></div>
+            <div class="stop"><b></b><span>张掖</span><small>2 晚</small></div>
+            <div class="stop"><b></b><span>嘉峪关</span><small>关城短停</small></div>
+            <div class="stop"><b></b><span>敦煌</span><small>4 晚后返深</small></div>
+          </div>
+          <div class="notice">
+            <strong>本版关键取舍</strong>
+            <p>8 月 16 日 12:00 已安排嘉峪关取车，晚上住敦煌中洲国际酒店；8 月 17 日上午已经锁定莫高窟，当天不要再塞鸣沙山。</p>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="overview">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <h2>行程总览</h2>
+            <p>这是一条“前段赶路、敦煌从容”的压缩精品亲子线。张掖用租车完成平山湖与七彩丹霞，嘉峪关取车后精简转场，敦煌保留完整的莫高窟、鸣沙山、西线和返程缓冲。</p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card"><span class="tag hot">必须守住</span><h3>8 月 16 日到敦煌</h3><p>第二天 10:45 莫高窟，前一晚必须在敦煌入住，避免交通误点或孩子疲惫影响参观。</p></article>
+          <article class="card"><span class="tag gold">亲子节奏</span><h3>鸣沙山单独一天</h3><p>8 月 18 日上午留白、下午进鸣沙山，比把鸣沙山塞到莫高窟当天舒服很多。</p></article>
+          <article class="card"><span class="tag blue">转场策略</span><h3>嘉峪关只抓核心</h3><p>张掖还车后到嘉峪关取 RAV4，看关城，再自驾经瓜州雕塑群到敦煌。当天不建议加长城第一墩和悬壁长城。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="anchors">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <h2>已订锚点</h2>
+            <p>下面四项会决定整条线的时间边界，其他景点都围绕它们做弹性安排。</p>
+          </div>
+        </div>
+        <div class="anchor-list">
+          <div class="anchor"><b>8/14 10:35</b><div><div class="bar"><span style="width:100%"></span></div><small>深航 ZH9235，06:55 深圳宝安 T3 起飞，10:35 到西宁曹家堡 T3。落地后直奔西宁站，接午后动车到张掖西。</small></div><small class="done">已订</small></div>
+          <div class="anchor"><b>8/17 10:45</b><div><div class="bar"><span style="width:100%"></span></div><small>莫高窟门票。建议 10:00 前到莫高窟数字展示中心，证件原件随身，票证一致。</small></div><small class="done">已订</small></div>
+          <div class="anchor"><b>8/17 20:00</b><div><div class="bar"><span style="width:100%"></span></div><small>《又见敦煌》演出。当天不要再安排鸣沙山，下午回酒店休息，19:15-19:30 到剧场。</small></div><small class="done">已订</small></div>
+          <div class="anchor"><b>8/20 16:00</b><div><div class="bar"><span style="width:94%"></span></div><small>国航 CA1286 敦煌 16:00 至北京 19:15，接 CA1307 北京 20:15 至深圳 23:35。</small></div><small class="done">已订</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="records">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <h2>实际预订记录</h2>
+            <p>以下来自你的行程截图。公开仓库版本已去除姓名、手机号、身份证号和订单号，只保留旅行执行需要的信息。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <span class="tag blue">去程航班</span>
+            <h3>8/14 深圳 → 西宁</h3>
+            <p><strong>深圳航空 ZH9235</strong></p>
+            <p>06:55 深圳宝安 T3 → 10:35 西宁曹家堡 T3，飞行约 3 小时 40 分。</p>
+            <p>出行人数：3 人。</p>
+          </article>
+          <article class="card">
+            <span class="tag blue">返程航班</span>
+            <h3>8/20 敦煌 → 北京 → 深圳</h3>
+            <p><strong>中国国航 CA1286</strong>：16:00 敦煌 T3 → 19:15 北京首都 T3。</p>
+            <p><strong>中国国航 CA1307</strong>：20:15 北京首都 T3 → 23:35 深圳宝安 T3。</p>
+            <p>中转时间约 1 小时，返程日建议 14:00 前到敦煌机场。</p>
+          </article>
+          <article class="card">
+            <span class="tag gold">张掖租车</span>
+            <h3>比亚迪秦 PLUS</h3>
+            <p>8/14 15:30 取车，8/16 10:00 还车。订单显示免费送车上门。</p>
+            <p>用途：张掖市区、平山湖大峡谷、七彩丹霞，以及 8/16 上午还车衔接嘉峪关。</p>
+          </article>
+          <article class="card">
+            <span class="tag gold">嘉峪关 / 敦煌租车</span>
+            <h3>丰田 RAV4 荣放</h3>
+            <p>8/16 12:00 取车，8/20 14:30 还车。订单显示门店取车、自助取车。</p>
+            <p>用途：嘉峪关关城、瓜州雕塑群、敦煌市区、鸣沙山、敦煌西线和机场还车。</p>
+          </article>
+          <article class="card">
+            <span class="tag hot">酒店</span>
+            <h3>张掖与敦煌住宿</h3>
+            <p><strong>张掖华辰国际大酒店</strong>：8/14 入住，8/16 离店，2 晚，雪山观景标间。</p>
+            <p><strong>敦煌中洲国际酒店（敦煌夜市店）</strong>：8/16 入住，8/19 离店，3 晚。</p>
+            <p><strong>敦煌山庄</strong>：8/19 入住，8/20 离店，1 晚，城堡双床房。</p>
+          </article>
+          <article class="card">
+            <span class="tag hot">门票</span>
+            <h3>莫高窟与演出</h3>
+            <p><strong>莫高窟旺季常规票</strong>：8/17 10:45，汉语讲解，3 张，总额 624 元。</p>
+            <p><strong>《又见敦煌》普通票</strong>：8/17 20:00，3 张，总额 894 元，到店自提。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="days">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <h2>每日详细行程</h2>
+            <p>时间按暑期高温、孩子体力和已出票节点重新压过。若遇大风、沙尘或景区临时调整，以当天官方公告和司机建议为准。</p>
+          </div>
+        </div>
+        <div class="days">
+          <article class="day">
+            <div class="day-head"><div class="date">8/14<small>周五 Day 1</small></div><h3>深圳飞西宁，动车到张掖，取车入住</h3><span class="pill mid">交通日</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">06:55-10:35</div><div><strong>深圳航空 ZH9235</strong><p>深圳宝安 T3 起飞，10:35 抵达西宁曹家堡 T3。落地后不进西宁市区，取行李后直接打车或网约车去西宁站。</p></div></div>
+              <div class="slot"><div class="time">11:15-12:15</div><div><strong>机场到西宁站</strong><p>车程通常约 30-45 分钟，预留行李、上车和进站安检时间。</p></div></div>
+              <div class="slot"><div class="time">13:16/13:37</div><div><strong>西宁到张掖西动车</strong><p>优先买 13:16 或 13:37 后的车；想更从容可选 14:34 后班次。</p></div></div>
+              <div class="slot"><div class="time">15:30</div><div><strong>张掖取车：比亚迪秦 PLUS</strong><p>订单显示 8/14 15:30 取车，8/16 10:00 还车，免费送车上门。若动车稍晚，提前联系门店同步到达时间。</p></div></div>
+              <div class="slot"><div class="time">16:00-17:30</div><div><strong>入住张掖华辰国际大酒店</strong><p>8/14 入住，8/16 离店，2 晚，雪山观景标间。入住后休息、补水、检查第二天自驾物品。</p></div></div>
+              <div class="slot"><div class="time">18:00-20:00</div><div><strong>张掖晚餐与补给</strong><p>当天不安排七彩丹霞。早点睡，把体力留给第二天双景区。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>张掖华辰国际大酒店</div><div class="mini"><b>交通</b>飞机 + 打车 + 动车 + 租车</div><div class="mini"><b>提醒</b>动车与取车留沟通余量</div></div>
+          </article>
+
+          <article class="day">
+            <div class="day-head"><div class="date">8/15<small>周六 Day 2</small></div><h3>平山湖大峡谷 + 七彩丹霞</h3><span class="pill high">偏高</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">07:30</div><div><strong>张掖自驾出发去平山湖</strong><p>使用已订比亚迪秦 PLUS，车上备水、零食、防晒衣和防滑鞋。</p></div></div>
+              <div class="slot"><div class="time">08:30-12:30</div><div><strong>平山湖大峡谷</strong><p>走常规路线即可，不建议亲子当天走太深度或太长的探险线。</p></div></div>
+              <div class="slot"><div class="time">13:30-15:30</div><div><strong>回张掖午餐与休息</strong><p>这段休息很关键，下午丹霞还有户外暴晒和观光车换乘。</p></div></div>
+              <div class="slot"><div class="time">16:00-19:00</div><div><strong>七彩丹霞傍晚入园</strong><p>8 月更适合傍晚进景区，光线好、体感也比中午友好。走常规观光车线即可。</p></div></div>
+              <div class="slot"><div class="time">20:00</div><div><strong>返回张掖晚餐</strong><p>别安排夜间长逛，第二天还要早起去嘉峪关。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>张掖华辰国际大酒店</div><div class="mini"><b>交通</b>比亚迪秦 PLUS 自驾</div><div class="mini"><b>弹性</b>孩子累则缩短平山湖</div></div>
+          </article>
+
+          <article class="day">
+            <div class="day-head"><div class="date">8/16<small>周日 Day 3</small></div><h3>张掖还车，嘉峪关取车，经瓜州到敦煌</h3><span class="pill high">转场偏高</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">09:00-10:00</div><div><strong>张掖退房，还比亚迪秦 PLUS</strong><p>订单显示 10:00 还车。建议前一晚把行李收好，早上不再安排景点。</p></div></div>
+              <div class="slot"><div class="time">10:00-12:00</div><div><strong>张掖到嘉峪关，衔接取车</strong><p>还车后尽快前往张掖西站，乘动车到嘉峪关南；若车次衔接偏紧，提前联系嘉峪关租车门店把 12:00 取车顺延到 12:30 左右。</p></div></div>
+              <div class="slot"><div class="time">12:00</div><div><strong>嘉峪关取车：丰田 RAV4 荣放</strong><p>订单显示 8/16 12:00 取车，8/20 14:30 还车。取车后先午餐，再去关城。</p></div></div>
+              <div class="slot"><div class="time">13:30-15:30</div><div><strong>嘉峪关关城</strong><p>只抓最核心的“天下第一雄关”。建议请讲解或租讲解器，孩子更容易理解关城防御体系。</p></div></div>
+              <div class="slot"><div class="time">15:30-16:00</div><div><strong>出发去敦煌</strong><p>不建议加悬壁长城和长城第一墩，因为第二天 10:45 已锁莫高窟。</p></div></div>
+              <div class="slot"><div class="time">17:30-18:15</div><div><strong>瓜州雕塑群</strong><p>重点看大地之子和无界；海市蜃楼顺路就停 10-15 分钟，不顺路不强求。当天以天黑前到敦煌为目标。</p></div></div>
+              <div class="slot"><div class="time">19:30-20:30</div><div><strong>抵达敦煌中洲国际酒店</strong><p>8/16 入住，8/19 离店，3 晚。晚上只吃饭和休息，不安排《又见敦煌》或鸣沙山。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>敦煌中洲国际酒店</div><div class="mini"><b>交通</b>动车 + RAV4 自驾</div><div class="mini"><b>取舍</b>不加嘉峪关三件套</div></div>
+          </article>
+
+          <article class="day">
+            <div class="day-head"><div class="date">8/17<small>周一 Day 4</small></div><h3>10:45 莫高窟，20:00《又见敦煌》</h3><span class="pill mid">文化主日</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">09:30</div><div><strong>酒店出发</strong><p>建议 10:00 前到莫高窟数字展示中心。带好身份证件原件，票证一致。</p></div></div>
+              <div class="slot"><div class="time">10:45</div><div><strong>莫高窟参观</strong><p>按预约时间参观。预计用时约 3.5-4.5 小时，结束时间视当天流程而定。</p></div></div>
+              <div class="slot"><div class="time">15:30-17:30</div><div><strong>回酒店休息</strong><p>这段不要省。莫高窟信息量很大，晚上还是沉浸式演出。</p></div></div>
+              <div class="slot"><div class="time">18:00-19:00</div><div><strong>简单晚餐</strong><p>吃清淡一点，避免演出期间孩子困倦或肠胃不舒服。</p></div></div>
+              <div class="slot"><div class="time">20:00</div><div><strong>《又见敦煌》</strong><p>建议 19:15-19:30 到剧场。穿舒适鞋，演出后直接回酒店。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>敦煌中洲国际酒店</div><div class="mini"><b>已订</b>莫高窟 + 演出</div><div class="mini"><b>禁忌</b>当天不塞鸣沙山</div></div>
+          </article>
+
+          <article class="day">
+            <div class="day-head"><div class="date">8/18<small>周二 Day 5</small></div><h3>上午留白，傍晚鸣沙山月牙泉</h3><span class="pill mid">中等</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">上午</div><div><strong>睡到自然醒</strong><p>可做轻松补给、洗衣、文创店或酒店休息。</p></div></div>
+              <div class="slot"><div class="time">12:00-15:30</div><div><strong>午餐与午休</strong><p>敦煌 8 月热，午休是傍晚沙山体验的保险。</p></div></div>
+              <div class="slot"><div class="time">16:30-19:30</div><div><strong>鸣沙山月牙泉</strong><p>骑骆驼、滑沙、爬沙山、看日落。带鞋套、防沙袋、墨镜和足量水。</p></div></div>
+              <div class="slot"><div class="time">20:30</div><div><strong>返回酒店</strong><p>洗脚、清沙、补水，别安排太晚的夜市。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>敦煌中洲国际酒店</div><div class="mini"><b>交通</b>RAV4 自驾 / 市区短途</div><div class="mini"><b>装备</b>鞋套和防沙袋</div></div>
+          </article>
+
+          <article class="day">
+            <div class="day-head"><div class="date">8/19<small>周三 Day 6</small></div><h3>阳关、玉门关、雅丹日落</h3><span class="pill high">偏高</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">08:30</div><div><strong>敦煌中洲国际酒店退房，出发走西线</strong><p>行李放车上，全天 RAV4 自驾。出发前确认油量、补给点和返程时间。</p></div></div>
+              <div class="slot"><div class="time">10:00-12:00</div><div><strong>阳关</strong><p>适合做边塞诗和丝路通关的亲子讲解，遗址区不要暴晒太久。</p></div></div>
+              <div class="slot"><div class="time">15:00-16:30</div><div><strong>玉门关 / 汉长城遗址</strong><p>视孩子状态缩短停留，把体力留给雅丹日落。</p></div></div>
+              <div class="slot"><div class="time">17:30-20:30</div><div><strong>敦煌雅丹国家地质公园</strong><p>傍晚看地貌光影。当天晚归，车上备足水、零食和薄外套。</p></div></div>
+              <div class="slot"><div class="time">22:00左右</div><div><strong>返回敦煌山庄入住</strong><p>8/19 入住敦煌山庄，城堡双床房。这是全程最晚的一天，第二天上午只做轻活动。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>敦煌山庄</div><div class="mini"><b>交通</b>RAV4 全天自驾</div><div class="mini"><b>风险</b>风沙天气需调整</div></div>
+          </article>
+
+          <article class="day">
+            <div class="day-head"><div class="date">8/20<small>周四 Day 7</small></div><h3>敦煌轻松半日，16:00 飞深圳</h3><span class="pill">轻松</span></div>
+            <div class="timeline">
+              <div class="slot"><div class="time">09:30-11:00</div><div><strong>敦煌山庄慢退房，市区轻逛</strong><p>沙洲市场、敦煌书中心或文创店即可，不安排远郊景点。</p></div></div>
+              <div class="slot"><div class="time">11:30</div><div><strong>午餐</strong><p>吃简单稳妥的餐食，返程日不冒险。</p></div></div>
+              <div class="slot"><div class="time">12:30-14:30</div><div><strong>前往机场并还车</strong><p>RAV4 订单显示 14:30 还车。建议 14:00 前到机场附近，留足还车检查、加油和安检时间。</p></div></div>
+              <div class="slot"><div class="time">16:00-23:35</div><div><strong>国航经北京返回深圳</strong><p>CA1286：16:00 敦煌 T3 → 19:15 北京首都 T3；CA1307：20:15 北京首都 T3 → 23:35 深圳宝安 T3。中转时间约 1 小时，提前确认行李直挂。</p></div></div>
+            </div>
+            <div class="note-row"><div class="mini"><b>住宿</b>无</div><div class="mini"><b>交通</b>机场返程</div><div class="mini"><b>原则</b>不做补景点</div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hotels">
+      <div class="shell">
+        <div class="section-head"><div><h2>住宿与交通</h2><p>住宿、租车和航班均已基本成型。后续重点是把动车与景区票补齐，并在出发前复核自驾路线。</p></div></div>
+        <div class="grid-2">
+          <article class="card"><span class="tag">住宿分配</span><h3>张掖 2 晚 + 敦煌 4 晚</h3><p>8/14、8/15：张掖华辰国际大酒店，雪山观景标间。</p><p>8/16、8/17、8/18：敦煌中洲国际酒店（敦煌夜市店）。</p><p>8/19：敦煌山庄，城堡双床房。8/20 退房后返程。</p></article>
+          <article class="card"><span class="tag blue">自驾安排</span><h3>两段租车</h3><p>张掖段：比亚迪秦 PLUS，8/14 15:30 取车，8/16 10:00 还车。</p><p>嘉峪关 / 敦煌段：丰田 RAV4 荣放，8/16 12:00 取车，8/20 14:30 还车。</p><p>8/16 两段租车与动车衔接较紧，建议提前联系门店确认可顺延取车。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="shell">
+        <div class="section-head"><div><h2>预约与门票状态</h2><p>航班、酒店、租车、莫高窟和演出已锁，接下来重点是动车和当天景区票。</p></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>项目</th><th>建议日期</th><th>状态 / 操作</th></tr></thead>
+            <tbody>
+              <tr><td>莫高窟</td><td>8/17 10:45</td><td><strong>已订</strong>，证件原件随身</td></tr>
+              <tr><td>又见敦煌</td><td>8/17 20:00</td><td><strong>已订</strong>，19:15-19:30 到场</td></tr>
+              <tr><td>去程航班</td><td>8/14 06:55-10:35</td><td><strong>已订</strong>，深航 ZH9235</td></tr>
+              <tr><td>返程航班</td><td>8/20 16:00-23:35</td><td><strong>已订</strong>，国航 CA1286 + CA1307，经北京</td></tr>
+              <tr><td>酒店</td><td>8/14-8/20</td><td><strong>已订</strong>，张掖华辰国际、敦煌中洲国际、敦煌山庄</td></tr>
+              <tr><td>租车</td><td>8/14-8/20</td><td><strong>已订</strong>，张掖秦 PLUS；嘉峪关 / 敦煌 RAV4</td></tr>
+              <tr><td>西宁 → 张掖西动车</td><td>8/14 午后</td><td>待购买，优先 13:16 / 13:37 / 14:34 后</td></tr>
+              <tr><td>张掖西 → 嘉峪关南动车</td><td>8/16 上午</td><td>待购买；要衔接 10:00 张掖还车与 12:00 嘉峪关取车</td></tr>
+              <tr><td>其他景区票</td><td>各游玩日前</td><td>七彩丹霞、平山湖、关城、鸣沙山、阳关、雅丹提前线上确认</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="packing">
+      <div class="shell">
+        <div class="section-head"><div><h2>行李与亲子提示</h2><p>这条线最考验的是干燥、强紫外线、风沙和两天长距离转场。</p></div></div>
+        <div class="grid-3">
+          <article class="card"><span class="tag hot">证件</span><h3>票证一致</h3><p>身份证、儿童证件、学生证随身。莫高窟尤其要票证一致，别放在托运行李或大箱深处。</p></article>
+          <article class="card"><span class="tag gold">防晒防沙</span><h3>比衣服更重要</h3><p>UPF 防晒衣、宽檐帽、墨镜、防晒霜、鞋套、防沙手机袋、湿巾和备用袜子。</p></article>
+          <article class="card"><span class="tag blue">车上补给</span><h3>西线多备水</h3><p>8/16 与 8/19 车程长。每人水、能量棒、水果、薄外套、晕车药和口服补液盐都建议随车。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="todo">
+      <div class="shell">
+        <div class="section-head"><div><h2>待完成列表</h2><p>按优先级排列，越靠前越影响整条线能否顺利执行。</p></div></div>
+        <div class="todo">
+          <ol>
+            <li><span class="pending">购买</span> 8 月 14 日西宁 → 张掖西动车票，优先 13:16、13:37 或 14:34 后，衔接 15:30 张掖取车。</li>
+            <li><span class="pending">购买</span> 8 月 16 日张掖西 → 嘉峪关南上午动车票，衔接 10:00 张掖还车与 12:00 嘉峪关取车。</li>
+            <li><span class="pending">确认</span> 张掖租车门店 8 月 14 日 15:30 送车地点，建议直接送到张掖华辰国际大酒店或张掖西站。</li>
+            <li><span class="pending">确认</span> 嘉峪关 RAV4 取车门店位置，若动车无法准点衔接，提前沟通取车顺延。</li>
+            <li><span class="pending">确认</span> RAV4 8 月 20 日 14:30 还车地点是否在敦煌机场或机场附近，并预留加油 / 验车时间。</li>
+            <li><span class="pending">购买 / 确认</span> 七彩丹霞、平山湖、嘉峪关关城、鸣沙山、阳关、雅丹门票。</li>
+            <li><span class="pending">整理</span> 全家证件原件、儿童证件、学生证，并拍照备份。</li>
+            <li><span class="pending">出发前复核</span> 莫高窟、《又见敦煌》、鸣沙山、雅丹天气与开放公告。</li>
+            <li><span class="pending">准备</span> 防晒、防沙、补水、晕车和常用药品。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="shell">
+        <div class="section-head"><div><h2>核实来源与边界</h2><p>页面沿用此前已核实的 2026 年景区与演出公开信息；航班、动车和门票以你已订信息及 12306、航司、景区小程序实时显示为准。</p></div></div>
+        <div class="source-box">
+          <ol>
+            <li><a href="https://www.dunhuangcaves.org/info/1020/7498.htm" target="_blank" rel="noreferrer">敦煌研究院：2026 年莫高窟旅游开放公告</a>。</li>
+            <li><a href="https://www.gswbj.gov.cn/a/2026/04/16/28007.html" target="_blank" rel="noreferrer">甘肃文旅：鸣沙山月牙泉 2026 年开放及售检票时间调整</a>。</li>
+            <li><a href="https://www.sohu.com/a/1011000357_100276335" target="_blank" rel="noreferrer">张掖七彩丹霞旅游景区 2026 年开闭园时间公告转载</a>。</li>
+            <li><a href="https://www.zhangye.gov.cn/chzy/zyly/ajjq/202303/t20230318_1007461.html" target="_blank" rel="noreferrer">张掖市人民政府：平山湖大峡谷景区介绍</a>。</li>
+            <li><a href="https://www.sohu.com/a/1015304822_121106869" target="_blank" rel="noreferrer">嘉峪关文物景区旺季开放时间及票价公告转载</a>。</li>
+            <li><a href="https://www.dhygbwg.com/" target="_blank" rel="noreferrer">敦煌阳关博物馆官方网站</a>。</li>
+            <li><a href="https://szcc.jingdian.com/attractions/detail/16732" target="_blank" rel="noreferrer">数字长城：雅丹地质公园导览</a>。</li>
+            <li><a href="https://www.gswbj.gov.cn/a/2026/01/22/27320.html" target="_blank" rel="noreferrer">甘肃文旅：《又见敦煌》2026 年演出季复演信息</a>。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="print-bar">
+    <button type="button" onclick="window.print()">打印 / 另存为 PDF</button>
+  </div>
+</body>
+</html>
