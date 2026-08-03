@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>河西走廊亲子丝路行｜行程海报</title>
+  <style>
+    :root {
+      --ink: #21313a;
+      --muted: #5e6b6f;
+      --paper: rgba(255, 251, 240, 0.76);
+      --line: rgba(52, 69, 71, 0.18);
+      --red: #b94c31;
+      --teal: #176f73;
+      --gold: #b47b22;
+      --blue: #3c6681;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 1200px;
+      height: 1500px;
+      margin: 0;
+      overflow: hidden;
+      background: #e8dcc2;
+      color: var(--ink);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+    }
+
+    body {
+      position: relative;
+    }
+
+    .art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+
+    .wash {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 249, 235, 0.1);
+    }
+
+    .poster {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 54px 58px 42px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 175px;
+      padding: 17px 28px 20px 30px;
+      border-left: 8px solid var(--red);
+      background: rgba(255, 252, 244, 0.7);
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 10px 28px rgba(62, 47, 25, 0.08);
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--red);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 61px;
+      line-height: 1.06;
+      font-weight: 900;
+    }
+
+    .meta {
+      margin: 12px 0 0;
+      font-size: 22px;
+      font-weight: 700;
+      color: #33484e;
+    }
+
+    .overview {
+      padding: 16px 24px 17px;
+      background: rgba(32, 48, 55, 0.78);
+      color: #fffaf0;
+      border-radius: 6px;
+      box-shadow: 0 10px 24px rgba(23, 37, 42, 0.14);
+    }
+
+    .route {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.25;
+      font-weight: 800;
+      word-break: keep-all;
+    }
+
+    .route-note {
+      margin: 7px 0 0;
+      color: #dce5e2;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .main {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.26fr) minmax(0, 0.9fr);
+      gap: 18px;
+    }
+
+    .panel {
+      min-height: 0;
+      background: var(--paper);
+      border: 1px solid rgba(82, 70, 48, 0.14);
+      border-radius: 6px;
+      box-shadow: 0 12px 30px rgba(61, 48, 30, 0.09);
+    }
+
+    .schedule {
+      padding: 22px 24px 18px;
+    }
+
+    .side {
+      display: flex;
+      min-height: 0;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .side .panel {
+      padding: 17px 19px 16px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 13px;
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 24px;
+      height: 4px;
+      background: var(--red);
+    }
+
+    .days {
+      display: grid;
+      gap: 0;
+    }
+
+    .day {
+      position: relative;
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 12px;
+      padding: 13px 0 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .day:first-child {
+      border-top: 0;
+      padding-top: 5px;
+    }
+
+    .date {
+      color: var(--teal);
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .date small {
+      display: block;
+      margin-top: 5px;
+      color: #758085;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .day p {
+      margin: 0;
+      font-size: 16.5px;
+      line-height: 1.48;
+      font-weight: 700;
+    }
+
+    .tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-top: 7px;
+      color: #57666b;
+      font-size: 13.5px;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      margin-top: 1px;
+      padding: 3px 7px;
+      color: white;
+      border-radius: 3px;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .badge.long {
+      background: var(--gold);
+    }
+
+    .badge.booked {
+      background: var(--teal);
+    }
+
+    .badge.warn {
+      background: var(--red);
+    }
+
+    .badge.easy {
+      background: var(--blue);
+    }
+
+    .stays {
+      flex: 0 0 auto;
+    }
+
+    .stay {
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .stay:first-of-type {
+      border-top: 0;
+      padding-top: 2px;
+    }
+
+    .stay-time {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .stay h3 {
+      margin: 3px 0 4px;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .stay p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .sights {
+      flex: 1 1 auto;
+    }
+
+    .sight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+    }
+
+    .sight {
+      padding: 6px 0;
+      border-top: 1px solid var(--line);
+      font-size: 11.8px;
+      line-height: 1.4;
+    }
+
+    .sight:nth-child(-n + 2) {
+      border-top: 0;
+    }
+
+    .sight strong {
+      display: block;
+      color: #293e44;
+      font-size: 13.2px;
+    }
+
+    .sight strong::before {
+      content: "◉";
+      margin-right: 5px;
+      color: var(--red);
+    }
+
+    .reminders {
+      flex: 0 0 auto;
+    }
+
+    .reminder-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px 12px;
+    }
+
+    .reminder {
+      padding-top: 7px;
+      border-top: 1px solid var(--line);
+      color: #526167;
+      font-size: 11.7px;
+      line-height: 1.4;
+    }
+
+    .reminder:nth-child(-n + 2) {
+      border-top: 0;
+      padding-top: 1px;
+    }
+
+    .reminder b {
+      color: var(--red);
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 18px;
+      min-height: 58px;
+      padding: 11px 20px;
+      background: rgba(255, 251, 240, 0.72);
+      border: 1px solid rgba(82, 70, 48, 0.14);
+      border-radius: 6px;
+    }
+
+    .todo {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .todo b {
+      color: var(--red);
+    }
+
+    .stamp {
+      padding: 8px 12px;
+      border: 2px solid var(--red);
+      color: var(--red);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 15px;
+      font-weight: 900;
+      transform: rotate(-2deg);
+    }
+  </style>
+</head>
+<body>
+  <img class="art" src="assets/silk-road-poster-art-v2.png" alt="">
+  <div class="wash"></div>
+
+  <main class="poster">
+    <header class="hero">
+      <p class="eyebrow">FAMILY JOURNEY · HEXI CORRIDOR</p>
+      <h1>河西走廊亲子丝路行</h1>
+      <p class="meta">2026.8.14 - 8.20　｜　7天6晚　｜　深圳出发</p>
+    </header>
+
+    <section class="overview" aria-label="行程概览">
+      <p class="route">深圳 → 西宁 → 张掖 → 嘉峪关 → 敦煌 → 北京 → 深圳</p>
+      <p class="route-note">飞机 + 动车 + 分段自驾，一路从高原走进戈壁、丹霞与敦煌。</p>
+    </section>
+
+    <div class="main">
+      <section class="panel schedule">
+        <h2 class="section-title">每日路线</h2>
+        <div class="days">
+          <article class="day">
+            <div class="date">8.14<small>DAY 1</small></div>
+            <div>
+              <p>深圳飞西宁，落地后直奔张掖，取车入住张掖市区。</p>
+              <div class="tip"><span class="badge booked">已出票</span><span>D2721 13:37 西宁发车，西宁不逗留。</span></div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="date">8.15<small>DAY 2</small></div>
+            <div>
+              <p>张掖自驾，上午走平山湖大峡谷，傍晚看七彩丹霞日落。</p>
+              <div class="tip"><span class="badge warn">高强度</span><span>户外强度偏高，门票提前确认。</span></div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="date">8.16<small>DAY 3</small></div>
+            <div>
+              <p>张掖动车到嘉峪关，看关城后自驾经瓜州雕塑群到敦煌。</p>
+              <div class="tip"><span class="badge booked">已出票</span><span>D2741 10:27 张掖西发车；不建议再加悬壁长城、长城第一墩。</span></div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="date">8.17<small>DAY 4</small></div>
+            <div>
+              <p>上午莫高窟，下午休息，晚上看《又见敦煌》。</p>
+              <div class="tip"><span class="badge booked">已预约</span><span>莫高窟 10:45、演出 20:00；证件随身。</span></div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="date">8.18<small>DAY 5</small></div>
+            <div>
+              <p>敦煌西线一日：阳关、玉门关、汉长城、雅丹日落。</p>
+              <div class="tip"><span class="badge long">长车程</span><span>备足饮水、防晒和零食。</span></div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="date">8.19<small>DAY 6</small></div>
+            <div>
+              <p>上午休息换酒店，下午去鸣沙山月牙泉看日落。</p>
+              <div class="tip"><span class="badge easy">慢节奏</span><span>16:30 后进景区更舒服，准备防沙用品。</span></div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="date">8.20<small>DAY 7</small></div>
+            <div>
+              <p>敦煌山庄慢退房，机场还车，经北京返回深圳。</p>
+              <div class="tip"><span class="badge warn">衔接</span><span>北京中转约 1 小时，提前确认行李直挂。</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="panel stays">
+          <h2 class="section-title">住哪里</h2>
+          <article class="stay">
+            <div class="stay-time">8.14 - 8.16 · 张掖市区</div>
+            <h3>张掖华辰国际大酒店</h3>
+            <p>方便取还车，衔接平山湖和七彩丹霞。</p>
+          </article>
+          <article class="stay">
+            <div class="stay-time">8.16 - 8.19 · 敦煌市区</div>
+            <h3>敦煌中洲国际酒店（夜市店）</h3>
+            <p>吃饭方便，适合莫高窟、西线和演出衔接。</p>
+          </article>
+          <article class="stay">
+            <div class="stay-time">8.19 - 8.20 · 鸣沙山附近</div>
+            <h3>敦煌山庄</h3>
+            <p>鸣沙山游玩后休息，也有敦煌风格体验。</p>
+          </article>
+        </section>
+
+        <section class="panel sights">
+          <h2 class="section-title">看什么</h2>
+          <div class="sight-grid">
+            <div class="sight"><strong>平山湖大峡谷</strong>峡谷徒步，有探险感。</div>
+            <div class="sight"><strong>张掖七彩丹霞</strong>傍晚光线最佳，看日落。</div>
+            <div class="sight"><strong>嘉峪关关城</strong>明长城西端，边塞感强。</div>
+            <div class="sight"><strong>大地之子 / 无界</strong>瓜州戈壁雕塑，沿途拍照。</div>
+            <div class="sight"><strong>莫高窟</strong>壁画、塑像与丝路历史。</div>
+            <div class="sight"><strong>又见敦煌</strong>沉浸式演出，亲子友好。</div>
+            <div class="sight"><strong>阳关 / 玉门关</strong>边塞诗词与汉代遗址。</div>
+            <div class="sight"><strong>雅丹国家地质公园</strong>风蚀地貌，日落最值得看。</div>
+            <div class="sight"><strong>鸣沙山月牙泉</strong>沙漠、骑骆驼、滑沙与日落。</div>
+          </div>
+        </section>
+
+        <section class="panel reminders">
+          <h2 class="section-title">旅行提醒</h2>
+          <div class="reminder-list">
+            <div class="reminder"><b>预约</b>：莫高窟和演出已订；其他门票提前确认。</div>
+            <div class="reminder"><b>交通</b>：8.14、8.16、8.18 是重点衔接日。</div>
+            <div class="reminder"><b>踩坑</b>：8.16 不加太多嘉峪关周边景点。</div>
+            <div class="reminder"><b>天气</b>：日晒强，户外放在上午或傍晚。</div>
+            <div class="reminder"><b>行李</b>：证件、驾驶证、防晒、防风沙和补水用品。</div>
+            <div class="reminder"><b>车辆</b>：确认取还点、保险、油电量和验车流程。</div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      <p class="todo"><b>出发前待办</b>　两段动车已订 · 确认各景区门票 · 复核租车取还点与保险</p>
+      <div class="stamp">丝路七日</div>
+    </footer>
+  </main>
+</body>
+</html>

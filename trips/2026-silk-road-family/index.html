@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>2026 河西走廊亲子行程｜实际预订版</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     :root{
       --paper:#fbf7ed;
@@ -241,98 +240,46 @@
     .pack-list{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .pack{padding:14px;border:1px solid rgba(32,48,46,.1);border-radius:8px;background:#fffdf8}
     .pack b{display:block;color:var(--jade);margin-bottom:6px}
-    .sketch-map{
-      position:relative;
+    .poster-showcase{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(300px,.5fr);
+      gap:18px;
+      align-items:start;
+    }
+    .poster-frame{
       overflow:hidden;
       border:1px solid rgba(32,48,46,.12);
       border-radius:8px;
-      background:
-        linear-gradient(180deg,rgba(255,253,248,.92),rgba(250,242,227,.96)),
-        repeating-linear-gradient(0deg,rgba(32,48,46,.035) 0 1px,transparent 1px 34px),
-        repeating-linear-gradient(90deg,rgba(32,48,46,.03) 0 1px,transparent 1px 34px);
+      background:rgba(255,253,248,.9);
       box-shadow:var(--shadow);
     }
-    .real-map-card{
-      overflow:hidden;
-      border:1px solid rgba(32,48,46,.12);
-      border-radius:8px;
-      background:#fffdf8;
-      box-shadow:var(--shadow);
-      margin-bottom:18px;
-    }
-    #trip-real-map{
+    .poster-frame img{
+      display:block;
       width:100%;
-      height:clamp(420px,54vw,640px);
-      background:#efe5d2;
+      height:auto;
     }
-    .real-map-toolbar{
+    .poster-actions{
       display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      padding:14px 16px;
-      border-bottom:1px solid rgba(32,48,46,.1);
-      background:rgba(255,253,248,.92);
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
     }
-    .real-map-toolbar p{margin:0;color:var(--soft-ink)}
-    .real-map-toolbar a{
-      flex:0 0 auto;
-      border:1px solid rgba(32,48,46,.14);
-      border-radius:8px;
-      padding:8px 11px;
-      color:var(--ink);
-      background:#fff;
-      font-weight:900;
-      font-size:14px;
-    }
-    .map-pin-label{
-      display:grid;
-      place-items:center;
-      width:30px;
-      height:30px;
-      border:2px solid #fffdf8;
-      border-radius:50%;
-      background:var(--rust);
-      color:#fff;
-      box-shadow:0 5px 14px rgba(32,48,46,.28);
-      font-weight:950;
-      font-size:13px;
-    }
-    .map-pin-label.train{background:var(--jade)}
-    .map-pin-label.drive{background:var(--gold);color:#352510}
-    .map-pin-label.transfer{background:var(--sky)}
-    .leaflet-popup-content{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
-    .leaflet-control-attribution{font-size:11px}
-    .sketch-map svg{display:block;width:100%;height:auto}
-    .map-caption{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:16px;
-      align-items:center;
-      padding:16px 18px;
-      border-top:1px solid rgba(32,48,46,.1);
-      background:rgba(255,253,248,.82);
-    }
-    .map-caption p{margin:0;color:var(--soft-ink)}
-    .map-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .legend-item{
+    .poster-actions a{
       display:inline-flex;
       align-items:center;
-      gap:6px;
-      padding:6px 9px;
-      border:1px solid rgba(32,48,46,.12);
+      justify-content:center;
+      min-height:40px;
+      padding:8px 12px;
       border-radius:8px;
-      background:#fffdf8;
-      color:var(--soft-ink);
-      font-size:13px;
-      font-weight:850;
+      background:var(--rust);
+      color:#fff;
+      font-weight:950;
     }
-    .legend-line{width:22px;height:3px;border-radius:99px;background:var(--rust)}
-    .legend-line.train{background:var(--jade)}
-    .legend-line.drive{background:var(--gold)}
-    .map-note-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
-    .map-note{padding:14px;border:1px solid rgba(32,48,46,.1);border-radius:8px;background:rgba(255,253,248,.88)}
-    .map-note b{display:block;color:var(--rust);margin-bottom:5px}
+    .poster-actions a + a{
+      background:#fffdf8;
+      color:var(--ink);
+      border:1px solid rgba(32,48,46,.14);
+    }
     .ticket-phone{
       width:min(430px,100%);
       margin:0 auto;
@@ -436,11 +383,7 @@
       .hero-grid,.grid-3,.grid-2,.quick-board{grid-template-columns:1fr}
       .map-card{min-height:auto}
       .day-body{grid-template-columns:1fr}
-      .real-map-toolbar{display:block}
-      .real-map-toolbar a{display:inline-flex;margin-top:8px}
-      .map-caption{grid-template-columns:1fr}
-      .map-legend{justify-content:flex-start}
-      .map-note-grid{grid-template-columns:1fr}
+      .poster-showcase{grid-template-columns:1fr}
       .ticket-grid{grid-template-columns:1fr}
       .pack-list{grid-template-columns:repeat(2,1fr)}
       .section-head{display:block}
@@ -454,7 +397,6 @@
       .slot{grid-template-columns:1fr;gap:4px}
       .float-print{display:none}
       h1{font-size:40px}
-      .sketch-map{margin-left:-4px;margin-right:-4px}
       .ticket-card.route-card{grid-template-columns:1fr}
       .ticket-arrow{text-align:left}
       .ticket-day{grid-template-columns:38px 1fr}
@@ -464,7 +406,7 @@
       body{background:#fff}
       .top,.float-print{display:none}
       .hero,section{padding:20px 0}
-      .map-card,.sketch-map,.card,.day,.panel,.table-box,.todo,.sources{box-shadow:none;break-inside:avoid}
+      .map-card,.card,.day,.panel,.table-box,.todo,.sources{box-shadow:none;break-inside:avoid}
       a{color:var(--ink)}
     }
   </style>
@@ -473,7 +415,7 @@
   <nav class="top" aria-label="页面导航">
     <div class="wrap">
       <a href="#overview">总览</a>
-      <a href="#route-map">地图</a>
+      <a href="#poster">海报</a>
       <a href="#ticket-map">票夹图</a>
       <a href="#anchors">锚点</a>
       <a href="#days">每日</a>
@@ -494,7 +436,7 @@
           <p class="lead">深圳飞西宁入，张掖 2 晚，嘉峪关取车后转场敦煌，最后从敦煌经北京返回深圳。页面按你已订的航班、租车、酒店、莫高窟和《又见敦煌》重新排布，优先保证孩子体力和关键票务节点。</p>
           <div class="hero-actions">
             <a href="#days">查看每日安排</a>
-            <a href="#route-map">查看手绘地图</a>
+            <a href="#poster">查看行程海报</a>
             <a href="#todo">查看待完成事项</a>
           </div>
         </div>
@@ -503,9 +445,9 @@
           <div class="route-title">路线与住宿节奏</div>
           <div class="route-line">
             <div class="stop"><span class="mark">1</span><div><b>深圳</b><small>8/14 06:55 出发</small></div><span class="status">已出票</span></div>
-            <div class="stop"><span class="mark">2</span><div><b>西宁</b><small>10:35 落地，接动车</small></div><span class="status">中转</span></div>
+            <div class="stop"><span class="mark">2</span><div><b>西宁</b><small>D2721 13:37 发车</small></div><span class="status">已出票</span></div>
             <div class="stop"><span class="mark">3</span><div><b>张掖</b><small>华辰国际大酒店 2 晚</small></div><span class="status">已订</span></div>
-            <div class="stop"><span class="mark">4</span><div><b>嘉峪关</b><small>关城短停，取 RAV4</small></div><span class="status">转场</span></div>
+            <div class="stop"><span class="mark">4</span><div><b>嘉峪关</b><small>D2741 到站后取 RAV4</small></div><span class="status">已出票</span></div>
             <div class="stop"><span class="mark">5</span><div><b>敦煌</b><small>中洲 3 晚 + 敦煌山庄 1 晚</small></div><span class="status">已订</span></div>
           </div>
           <div class="hero-stats">
@@ -546,132 +488,27 @@
       </div>
     </section>
 
-    <section id="route-map">
+    <section id="poster">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>真实底图与手绘路线地图</h2>
-            <p>上方是真实在线地图底图，按城市坐标画出航班、动车和自驾段；下方保留手绘感地图，方便快速讲清整条丝路故事线。</p>
+            <h2>行程海报</h2>
+            <p>公开分享版海报已更新：动车票改为已订，不包含姓名、手机号、证件号或订单号，适合发给同行家人快速确认路线。</p>
           </div>
         </div>
-        <div class="real-map-card">
-          <div class="real-map-toolbar">
-            <p>可拖动、缩放查看实际方位。红色虚线是航班，绿色是动车，黄色是自驾，蓝色虚线是返程中转。</p>
-            <a href="https://www.google.com/maps/dir/Shenzhen/Xining/Zhangye/Jiayuguan/Dunhuang/Beijing/Shenzhen" target="_blank" rel="noreferrer">在 Google Maps 打开</a>
+        <div class="poster-showcase">
+          <div class="poster-frame">
+            <img src="silk-road-itinerary-poster-v3.png" alt="河西走廊亲子丝路行竖版行程海报">
           </div>
-          <div id="trip-real-map" aria-label="真实底图上的河西走廊亲子行路线"></div>
-          <noscript>
-            <div class="map-caption">
-              <p>浏览器未启用 JavaScript，交互地图无法加载。可使用上方 Google Maps 链接查看路线。</p>
+          <article class="card">
+            <span class="tag hot">新版海报</span>
+            <h3>住哪里、行哪里、看什么，一张图看完</h3>
+            <p>海报保留每日一句话路线、住宿区域、必看景点和实用提醒；底图透明度已降低，能看到敦煌、丹霞、峡谷和戈壁插画。</p>
+            <div class="poster-actions">
+              <a href="silk-road-itinerary-poster-v3.png" download>下载 PNG</a>
+              <a href="poster.html">打开 HTML 海报</a>
             </div>
-          </noscript>
-        </div>
-        <div class="sketch-map" aria-label="2026 河西走廊亲子行手绘路线地图">
-          <svg viewBox="0 0 1000 620" role="img" aria-labelledby="map-title map-desc">
-            <title id="map-title">深圳到西宁、张掖、嘉峪关、敦煌，再经北京返回深圳的手绘地图</title>
-            <desc id="map-desc">按真实地理方位近似绘制的亲子旅行路线。敦煌位于最西侧，嘉峪关和张掖沿河西走廊向东，西宁在张掖东南，北京在东北，深圳在华南。</desc>
-            <defs>
-              <filter id="rough" x="-8%" y="-8%" width="116%" height="116%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="6"/>
-                <feDisplacementMap in="SourceGraphic" scale="2.2"/>
-              </filter>
-              <pattern id="paperDots" width="22" height="22" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="#d7c8ad" opacity=".35"/>
-              </pattern>
-              <style>
-                .land{fill:#f8efdc;stroke:#cfc2ad;stroke-width:2}
-                .grid{stroke:#dfd2bd;stroke-width:1;stroke-dasharray:5 9;opacity:.7}
-                .mountain{fill:none;stroke:#6f875d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:.82;filter:url(#rough)}
-                .desert{fill:#efd9a9;stroke:#d7a13a;stroke-width:2;opacity:.72;filter:url(#rough)}
-                .river{fill:none;stroke:#7fb0be;stroke-width:4;stroke-linecap:round;stroke-dasharray:3 9;opacity:.8}
-                .flight{fill:none;stroke:#a44c35;stroke-width:4;stroke-linecap:round;stroke-dasharray:12 12;filter:url(#rough)}
-                .train{fill:none;stroke:#2f756b;stroke-width:5;stroke-linecap:round;filter:url(#rough)}
-                .drive{fill:none;stroke:#d7a13a;stroke-width:5;stroke-linecap:round;filter:url(#rough)}
-                .return{fill:none;stroke:#2f7184;stroke-width:4;stroke-linecap:round;stroke-dasharray:10 10;filter:url(#rough)}
-                .pin{fill:#fffdf8;stroke:#20302e;stroke-width:2}
-                .pin-main{fill:#a44c35}
-                .pin-train{fill:#2f756b}
-                .pin-drive{fill:#d7a13a}
-                .label{font:700 20px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#20302e}
-                .label-small{font:600 13px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#66736f}
-                .label-tiny{font:650 12px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#7a5a22}
-              </style>
-            </defs>
-
-            <rect width="1000" height="620" fill="#fbf7ed"/>
-            <rect width="1000" height="620" fill="url(#paperDots)" opacity=".65"/>
-            <path class="land" filter="url(#rough)" d="M84 82 C182 28 288 39 371 78 C463 120 563 88 657 70 C750 52 856 87 919 164 C982 241 947 352 878 407 C812 459 780 544 676 558 C569 572 486 503 391 502 C286 501 184 555 107 488 C30 421 25 315 57 230 C76 178 30 119 84 82Z"/>
-
-            <path class="grid" d="M105 120 L912 120M88 250 L920 250M76 380 L900 380M120 510 L790 510M185 70 L150 540M350 64 L335 548M525 72 L508 556M705 82 L682 546M855 130 L808 538"/>
-            <path class="desert" d="M62 94 C126 64 235 62 323 92 C405 120 475 128 548 110 C462 160 373 181 262 171 C157 162 88 137 62 94Z"/>
-            <path class="desert" d="M74 151 C152 124 253 134 349 161 C431 184 510 178 584 151 C519 215 400 230 282 207 C174 187 112 177 74 151Z"/>
-            <path class="mountain" d="M96 235 L132 198 L172 239 L216 187 L270 245 L316 194 L374 250 L425 207 L486 258"/>
-            <path class="mountain" d="M90 284 L135 247 L182 292 L232 241 L286 300 L342 247 L401 303 L452 261 L510 313"/>
-            <path class="river" d="M356 202 C382 225 415 232 451 228 C488 224 520 238 557 258"/>
-
-            <path class="flight" d="M809 565 C700 498 580 404 470 310 C410 258 376 225 354 204"/>
-            <path class="train" d="M354 204 C338 179 319 159 304 142"/>
-            <path class="train" d="M304 142 C274 129 244 121 223 118"/>
-            <path class="drive" d="M223 118 C188 112 143 108 96 108"/>
-            <path class="return" d="M96 108 C318 63 647 61 906 115"/>
-            <path class="return" d="M906 115 C878 274 850 421 809 565"/>
-
-            <g transform="translate(809 565)">
-              <circle class="pin pin-main" r="16"/>
-              <circle fill="#fffdf8" r="5"/>
-              <text class="label" x="-38" y="-28">深圳</text>
-              <text class="label-small" x="-58" y="36">8/14 出发 / 8/20 返回</text>
-            </g>
-            <g transform="translate(354 204)">
-              <circle class="pin pin-main" r="16"/>
-              <circle fill="#fffdf8" r="5"/>
-              <text class="label" x="22" y="-8">西宁</text>
-              <text class="label-small" x="22" y="13">10:35 落地，接动车</text>
-            </g>
-            <g transform="translate(304 142)">
-              <circle class="pin pin-train" r="16"/>
-              <circle fill="#fffdf8" r="5"/>
-              <text class="label" x="-10" y="-30">张掖</text>
-              <text class="label-small" x="-36" y="-10">2 晚：平山湖 + 丹霞</text>
-            </g>
-            <g transform="translate(223 118)">
-              <circle class="pin pin-drive" r="16"/>
-              <circle fill="#fffdf8" r="5"/>
-              <text class="label" x="-82" y="-28">嘉峪关</text>
-              <text class="label-small" x="-114" y="-8">关城短停，取 RAV4</text>
-            </g>
-            <g transform="translate(96 108)">
-              <circle class="pin pin-main" r="16"/>
-              <circle fill="#fffdf8" r="5"/>
-              <text class="label" x="-12" y="-32">敦煌</text>
-              <text class="label-small" x="24" y="-9">莫高窟 / 西线 / 鸣沙山</text>
-            </g>
-            <g transform="translate(906 115)">
-              <circle class="pin" r="15"/>
-              <circle fill="#2f7184" r="5"/>
-              <text class="label" x="-58" y="-28">北京</text>
-              <text class="label-small" x="-92" y="-8">8/20 返程中转</text>
-            </g>
-
-            <text class="label-tiny" x="88" y="78">戈壁与敦煌绿洲</text>
-            <text class="label-tiny" x="140" y="332">祁连山脉大致方位</text>
-            <text class="label-tiny" x="254" y="96">河西走廊：敦煌 → 嘉峪关 → 张掖</text>
-            <text class="label-tiny" x="724" y="94">华北中转</text>
-            <text class="label-tiny" x="742" y="602">华南起终点</text>
-          </svg>
-          <div class="map-caption">
-            <p>读图顺序：深圳飞西宁，西宁动车到张掖；张掖到嘉峪关继续动车；嘉峪关取车后向西自驾到敦煌；返程从敦煌飞北京，再飞深圳。</p>
-            <div class="map-legend">
-              <span class="legend-item"><span class="legend-line"></span>航班</span>
-              <span class="legend-item"><span class="legend-line train"></span>动车</span>
-              <span class="legend-item"><span class="legend-line drive"></span>自驾</span>
-            </div>
-          </div>
-        </div>
-        <div class="map-note-grid">
-          <div class="map-note"><b>实际方位</b>敦煌在最西，嘉峪关、张掖沿河西走廊向东，西宁在张掖东南侧。</div>
-          <div class="map-note"><b>行程重心</b>前两天解决长距离进入河西走廊，后四晚集中留给敦煌。</div>
-          <div class="map-note"><b>亲子读法</b>把地图当成孩子的“丝路故事线”：飞到高原，沿走廊进戈壁，最后从沙漠绿洲返程。</div>
+          </article>
         </div>
       </div>
     </section>
@@ -741,7 +578,9 @@
           <div class="panel">
             <span class="tag hot">必须准时</span>
             <div class="anchor-list">
-              <div class="anchor"><b>8/14 10:35</b><div><div class="progress"><span style="width:100%"></span></div><small>ZH9235 抵达西宁曹家堡 T3，随后前往西宁站乘动车到张掖西。</small></div><span class="done">已订</span></div>
+              <div class="anchor"><b>8/14 10:35</b><div><div class="progress"><span style="width:100%"></span></div><small>ZH9235 抵达西宁曹家堡 T3，随后前往西宁站。</small></div><span class="done">已订</span></div>
+              <div class="anchor"><b>8/14 13:37</b><div><div class="progress"><span style="width:100%"></span></div><small>D2721 西宁 → 张掖西，3 张已出票。</small></div><span class="done">已订</span></div>
+              <div class="anchor"><b>8/16 10:27</b><div><div class="progress"><span style="width:100%"></span></div><small>D2741 张掖西 → 嘉峪关南，3 张已出票。</small></div><span class="done">已订</span></div>
               <div class="anchor"><b>8/17 10:45</b><div><div class="progress"><span style="width:100%"></span></div><small>莫高窟旺季常规票，汉语讲解，建议 10:00 前到数字展示中心。</small></div><span class="done">已订</span></div>
               <div class="anchor"><b>8/17 20:00</b><div><div class="progress"><span style="width:100%"></span></div><small>《又见敦煌》普通票，建议 19:15-19:30 到剧场取票入场。</small></div><span class="done">已订</span></div>
               <div class="anchor"><b>8/20 16:00</b><div><div class="progress"><span style="width:94%"></span></div><small>CA1286 敦煌飞北京，接 CA1307 北京飞深圳，20:15 中转。</small></div><span class="done">已订</span></div>
@@ -777,8 +616,8 @@
               <div class="timeline">
                 <div class="slot"><div class="time">06:55</div><div><strong>深圳宝安 T3 起飞</strong><p>深圳航空 ZH9235，建议提前完成值机和托运行李。</p></div></div>
                 <div class="slot"><div class="time">10:35</div><div><strong>抵达西宁曹家堡 T3</strong><p>取行李后尽快前往西宁站，机场到高铁站建议预留 70-90 分钟。</p></div></div>
-                <div class="slot"><div class="time">13:00-14:40</div><div><strong>西宁站动车至张掖西</strong><p>优先选直达张掖西的班次，中途不在西宁市区停留。</p></div></div>
-                <div class="slot"><div class="time">15:30</div><div><strong>张掖取比亚迪秦 PLUS</strong><p>检查车况、油电量、儿童座椅或增高垫需求。</p></div></div>
+                <div class="slot"><div class="time">13:37</div><div><strong>D2721 西宁 → 张掖西</strong><p>动车票已订 3 张；中途不在西宁市区停留。</p></div></div>
+                <div class="slot"><div class="time">15:30</div><div><strong>张掖取比亚迪秦 PLUS</strong><p>检查车况、油电量、保险和取还车规则。</p></div></div>
                 <div class="slot"><div class="time">16:30 后</div><div><strong>入住张掖华辰国际大酒店</strong><p>晚餐轻松，早点休息，为第二天峡谷和丹霞蓄力。</p></div></div>
               </div>
               <aside class="side-note">
@@ -817,8 +656,9 @@
             </div>
             <div class="day-body">
               <div class="timeline">
-                <div class="slot"><div class="time">09:00</div><div><strong>退房，整理车辆</strong><p>确认无遗漏行李、充电线、儿童用品。</p></div></div>
-                <div class="slot"><div class="time">10:00</div><div><strong>张掖还秦 PLUS</strong><p>随后前往张掖西站，乘高铁到嘉峪关南。</p></div></div>
+                <div class="slot"><div class="time">09:00</div><div><strong>退房，整理车辆</strong><p>确认无遗漏行李、充电线和随身证件。</p></div></div>
+                <div class="slot"><div class="time">10:00</div><div><strong>张掖还秦 PLUS</strong><p>还车后尽快进站，衔接 10:27 的 D2741。</p></div></div>
+                <div class="slot"><div class="time">10:27</div><div><strong>D2741 张掖西 → 嘉峪关南</strong><p>动车票已订 3 张，到站后前往门店取 RAV4。</p></div></div>
                 <div class="slot"><div class="time">12:00</div><div><strong>嘉峪关取 RAV4</strong><p>午餐后直奔嘉峪关关城。</p></div></div>
                 <div class="slot"><div class="time">13:30-15:30</div><div><strong>嘉峪关关城</strong><p>主看关城、城墙与关外视野，控制步行量。</p></div></div>
                 <div class="slot"><div class="time">16:00-19:00</div><div><strong>自驾前往敦煌</strong><p>途中可停瓜州雕塑群：大地之子、无界；海市蜃楼为远观拍照点，可按时间决定。</p></div></div>
@@ -941,6 +781,12 @@
             <p><strong>嘉峪关 / 敦煌：</strong>丰田 RAV4 荣放，8/16 12:00 取车，8/20 14:30 还车。</p>
           </article>
           <article class="card">
+            <span class="tag blue">动车</span>
+            <h3>两段河西走廊铁路</h3>
+            <p><strong>8/14：</strong>D2721，13:37 西宁 → 张掖西，3 张已出票。</p>
+            <p><strong>8/16：</strong>D2741，10:27 张掖西 → 嘉峪关南，3 张已出票。</p>
+          </article>
+          <article class="card">
             <span class="tag hot">酒店</span>
             <h3>张掖 2 晚 + 敦煌 4 晚</h3>
             <p>张掖华辰国际大酒店：8/14 入住，8/16 离店，雪山观景标间。</p>
@@ -969,9 +815,9 @@
           <table>
             <thead><tr><th>日期</th><th>住宿</th><th>主要交通</th><th>当天关键衔接</th></tr></thead>
             <tbody>
-              <tr><td>8/14</td><td>张掖华辰国际大酒店</td><td>飞机 + 机场交通 + 动车 + 秦 PLUS</td><td>西宁机场到西宁站，下午到张掖取车。</td></tr>
+              <tr><td>8/14</td><td>张掖华辰国际大酒店</td><td>飞机 + 机场交通 + D2721 + 秦 PLUS</td><td>10:35 落地西宁，13:37 动车去张掖西，下午取车。</td></tr>
               <tr><td>8/15</td><td>张掖华辰国际大酒店</td><td>秦 PLUS 自驾</td><td>平山湖上午，七彩丹霞下午。</td></tr>
-              <tr><td>8/16</td><td>敦煌中洲国际酒店</td><td>动车 + RAV4 自驾</td><td>嘉峪关关城后直奔敦煌，保证 8/17 莫高窟。</td></tr>
+              <tr><td>8/16</td><td>敦煌中洲国际酒店</td><td>D2741 + RAV4 自驾</td><td>10:27 张掖西出发，嘉峪关关城后直奔敦煌，保证 8/17 莫高窟。</td></tr>
               <tr><td>8/17</td><td>敦煌中洲国际酒店</td><td>RAV4 市内短途</td><td>莫高窟 10:45，《又见敦煌》20:00。</td></tr>
               <tr><td>8/18</td><td>敦煌中洲国际酒店</td><td>RAV4 西线自驾</td><td>阳关、玉门关、雅丹日落。</td></tr>
               <tr><td>8/19</td><td>敦煌山庄</td><td>RAV4 市内短途</td><td>上午休息换酒店，下午鸣沙山。</td></tr>
@@ -992,7 +838,7 @@
         </div>
         <div class="grid-3">
           <article class="card"><span class="tag hot">已知门票</span><h3>1,518 元</h3><p>莫高窟 624 元 +《又见敦煌》894 元。</p></article>
-          <article class="card"><span class="tag gold">交通租车</span><h3>约 7,000-12,000 元</h3><p>含机票、动车、两段租车、油费和停车等，实际以已出票金额为准。</p></article>
+          <article class="card"><span class="tag gold">交通租车</span><h3>约 7,000-12,000 元</h3><p>含机票、两段已订动车、两段租车、油费和停车等，实际以已出票金额为准。</p></article>
           <article class="card"><span class="tag blue">全程合计</span><h3 class="budget">约 22,000-35,000 元</h3><p>含酒店、餐饮、门票、交通和零散消费；购物另计。</p></article>
         </div>
       </div>
@@ -1020,19 +866,18 @@
         <div class="section-head">
           <div>
             <h2>待完成列表</h2>
-            <p>出发前按优先级完成。最先处理火车票和景区预约，其次处理用车、保险和儿童装备。</p>
+            <p>出发前按优先级完成。两段动车票已订，接下来重点处理景区预约、用车细节、保险和防晒防沙装备。</p>
           </div>
         </div>
         <div class="todo">
           <ol>
-            <li><span class="warn">待完成：</span>购买 8/14 西宁站至张掖西动车票，预留机场到车站 70-90 分钟。</li>
-            <li><span class="warn">待完成：</span>购买 8/16 张掖西至嘉峪关南动车票，需匹配 10:00 张掖还车与 12:00 嘉峪关取车。</li>
-            <li><span class="warn">待完成：</span>确认张掖、嘉峪关、敦煌三段取还车地点、保险、儿童座椅或增高垫。</li>
+            <li><span class="done">已完成：</span>8/14 D2721 西宁至张掖西、8/16 D2741 张掖西至嘉峪关南，均已出票 3 张。</li>
+            <li><span class="warn">待完成：</span>确认张掖、嘉峪关、敦煌三段取还车地点、保险、油电量和还车流程。</li>
             <li><span class="warn">待完成：</span>预约或提前购买七彩丹霞、平山湖、嘉峪关关城、阳关、玉门关、雅丹、鸣沙山门票。</li>
             <li><span class="warn">待完成：</span>确认莫高窟取票规则、证件要求，以及《又见敦煌》取票地点和停车位置。</li>
             <li><span class="warn">待完成：</span>购买旅行险，覆盖自驾、航班延误、医疗和儿童意外。</li>
             <li><span class="warn">待完成：</span>出发前 3 天查看敦煌、张掖天气，若遇沙尘大风，鸣沙山和雅丹优先调整。</li>
-            <li><span class="done">已完成：</span>去程航班、返程航班、张掖酒店、敦煌酒店、两段租车、莫高窟和《又见敦煌》门票。</li>
+            <li><span class="done">已完成：</span>去程航班、返程航班、两段动车、张掖酒店、敦煌酒店、两段租车、莫高窟和《又见敦煌》门票。</li>
           </ol>
         </div>
       </div>
@@ -1066,64 +911,5 @@
   <footer>
     <div class="wrap">更新日期：2026-08-01。公开页面已隐去个人身份信息，仅保留行程执行信息。</div>
   </footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-    (function(){
-      if (!window.L || !document.getElementById('trip-real-map')) return;
-
-      var places = [
-        { key:'shenzhen', name:'深圳', label:'1', type:'main', coord:[22.5431,114.0579], note:'8/14 06:55 出发；8/20 23:35 返回' },
-        { key:'xining', name:'西宁', label:'2', type:'transfer', coord:[36.6171,101.7782], note:'10:35 抵达曹家堡机场，转西宁站动车' },
-        { key:'zhangye', name:'张掖', label:'3', type:'train', coord:[38.9259,100.4498], note:'2 晚，平山湖大峡谷 + 七彩丹霞' },
-        { key:'jiayuguan', name:'嘉峪关', label:'4', type:'drive', coord:[39.7720,98.2891], note:'关城短停，12:00 取 RAV4' },
-        { key:'dunhuang', name:'敦煌', label:'5', type:'main', coord:[40.1421,94.6619], note:'莫高窟、又见敦煌、西线、鸣沙山' },
-        { key:'beijing', name:'北京', label:'6', type:'transfer', coord:[39.9042,116.4074], note:'8/20 返程中转' }
-      ];
-
-      var byKey = places.reduce(function(acc, place){
-        acc[place.key] = place;
-        return acc;
-      }, {});
-
-      var map = L.map('trip-real-map', {
-        scrollWheelZoom:false,
-        tap:true
-      });
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom:18,
-        attribution:'&copy; OpenStreetMap contributors'
-      }).addTo(map);
-
-      function icon(place){
-        return L.divIcon({
-          className:'',
-          html:'<span class="map-pin-label ' + place.type + '">' + place.label + '</span>',
-          iconSize:[30,30],
-          iconAnchor:[15,15],
-          popupAnchor:[0,-16]
-        });
-      }
-
-      places.forEach(function(place){
-        L.marker(place.coord, { icon:icon(place), title:place.name })
-          .addTo(map)
-          .bindPopup('<strong>' + place.name + '</strong><br>' + place.note);
-      });
-
-      var flightOut = [byKey.shenzhen.coord, byKey.xining.coord];
-      var train = [byKey.xining.coord, byKey.zhangye.coord, byKey.jiayuguan.coord];
-      var drive = [byKey.jiayuguan.coord, byKey.dunhuang.coord];
-      var flightBack = [byKey.dunhuang.coord, byKey.beijing.coord, byKey.shenzhen.coord];
-
-      L.polyline(flightOut, { color:'#a44c35', weight:4, dashArray:'10 9', opacity:.9 }).addTo(map).bindPopup('去程航班：深圳 → 西宁');
-      L.polyline(train, { color:'#2f756b', weight:5, opacity:.9 }).addTo(map).bindPopup('动车：西宁 → 张掖 → 嘉峪关');
-      L.polyline(drive, { color:'#d7a13a', weight:5, opacity:.95 }).addTo(map).bindPopup('自驾：嘉峪关 → 敦煌');
-      L.polyline(flightBack, { color:'#2f7184', weight:4, dashArray:'10 9', opacity:.88 }).addTo(map).bindPopup('返程航班：敦煌 → 北京 → 深圳');
-
-      var bounds = L.latLngBounds(places.map(function(place){ return place.coord; }));
-      map.fitBounds(bounds, { padding:[28,28] });
-    })();
-  </script>
 </body>
 </html>
